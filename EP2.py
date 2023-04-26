@@ -62,7 +62,8 @@ def afundados(frota, tabuleiro):
                 if tabuleiro[i][j] != 'X': 
                     algum_afundou = False 
                     break 
-                navio_afundado +=1 
+            else: 
+                    navio_afundado +=1 
     return navio_afundado
 
 
