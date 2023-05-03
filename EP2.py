@@ -81,7 +81,7 @@ def posicao_valida(frota, linha, coluna, orientacao, tamanho):
         return True 
     return True  
 
-
+ 
 
 frota = {
     "porta-aviões":[],
@@ -110,7 +110,6 @@ for navio in frota.keys():
         vezes=4
 
     while n < vezes:
-        print(n)
 
         print (f"Insira as informações referentes ao navio {navio} que possui tamanho {tamanho_frota[navio]}")
         linha = int(input("Linha: "))
@@ -132,6 +131,7 @@ for navio in frota.keys():
             preenche_frota(frota, navio, linha, coluna, orientacao, tamanho_frota[navio])
             n+=1
 print(frota)
+
 
 
 
