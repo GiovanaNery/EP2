@@ -208,6 +208,10 @@ while jogando:
 
 
 
+#
+
+
+
 
           
 
