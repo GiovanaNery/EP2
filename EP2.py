@@ -206,9 +206,81 @@ while jogando:
             print('Parabéns! Você derrubou todos os navios do seu oponente!')
 
 
+#JODADAS DO OPONENTE 
+frota_oponente = {
+    'porta-aviões': [
+        [[9, 1], [9, 2], [9, 3], [9, 4]]
+    ],
+    'navio-tanque': [
+        [[6, 0], [6, 1], [6, 2]],
+        [[4, 3], [5, 3], [6, 3]]
+    ],
+    'contratorpedeiro': [
+        [[1, 6], [1, 7]],
+        [[0, 5], [1, 5]],
+        [[3, 6], [3, 7]]
+    ],
+    'submarino': [
+        [[2, 7]],
+        [[0, 6]],
+        [[9, 7]],
+        [[7, 6]]
+    ]
+}
 
+tabuleiro_oponente=posiciona_frota(frota_oponente)
 
-#
+tabuleiro_jogador=posiciona_frota(frota)
+
+posicoes=[]
+posicoes_oponente=[]
+jogando=True 
+while jogando:
+    escolhas=True
+    while escolhas:
+        tabuleiro=monta_tabuleiros(tabuleiro_jogador,tabuleiro_oponente)
+        print(tabuleiro)
+
+        ataque_linha=int(input('Qual linha deseja atacar? '))
+        while ataque_linha not in range(0,10):
+            print('Linha inválida!')
+            ataque_linha=int(input('Qual linha deseja atacar? '))
+        
+        ataque_coluna=int(input('Qual coluna deseja atacar? '))
+        while ataque_coluna not in range(0,10):
+            print('Coluna inválida!')
+            ataque_coluna=int(input('Qual linha deseja atacar? '))
+        posicao=[ataque_linha,ataque_coluna]
+        if posicao not in posicoes:
+            posicoes.append(posicao)
+            tabuleiro_oponente=faz_jogada(tabuleiro_oponente,ataque_linha,ataque_coluna)
+            jogadas_oponente=True
+            while jogadas_oponente:
+                ataque_linha_oponente=random.randint(0,9)
+                ataque_coluna_oponente=random.randint(0,9)
+                posicao_op=[ataque_linha_oponente,ataque_coluna_oponente]
+                if posicao_op in posicoes_oponente:
+                    print('A posição linha {0} e coluna {1} já foi informada anteriormente!'.format(ataque_linha,ataque_coluna))
+                else:
+                    print('Seu oponente está atacando na linha {0} e coluna {1}'.format(ataque_linha_oponente,ataque_coluna_oponente))
+                    posicoes_oponente.append(posicao_op)
+                    tabuleiro_jogador=faz_jogada(tabuleiro_jogador,ataque_linha_oponente,ataque_coluna_oponente)
+                    jogadas_oponente=False
+                    escolhas=False
+                    rodando=afundados(frota_oponente,tabuleiro_oponente)
+                    rodando_oponente=afundados(frota,tabuleiro_jogador)
+       
+            
+    if rodando == 10:
+        jogando=False
+        escolhas=False
+        print('Parabéns! Você derrubou todos os navios do seu oponente!')
+        break
+    if rodando_oponente == 10:
+        jogando=False
+        escolhas=False
+        print('Xi! O oponente derrubou toda a sua frota =(')
+        break
 
 
 
