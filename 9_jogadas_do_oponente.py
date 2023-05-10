@@ -218,3 +218,4 @@ while jogando:
         escolhas=False
         print('Xi! O oponente derrubou toda a sua frota =(')
         break
+    
