@@ -133,7 +133,6 @@ for navio in frota.keys():
             n+=1
    
 
-
 def monta_tabuleiros(tabuleiro_jogador, tabuleiro_oponente):
     texto = ''
     texto += '   0  1  2  3  4  5  6  7  8  9         0  1  2  3  4  5  6  7  8  9\n'
@@ -171,9 +170,7 @@ tabuleiro_oponente=posiciona_frota(frota_oponente)
 tabuleiro_jogador=posiciona_frota(frota)
 
 posicoes=[]
-
 posicoes_oponente=[]
-
 jogando=True 
 while jogando:
     escolhas=True
@@ -199,7 +196,9 @@ while jogando:
                 ataque_linha_oponente=random.randint(0,9)
                 ataque_coluna_oponente=random.randint(0,9)
                 posicao_op=[ataque_linha_oponente,ataque_coluna_oponente]
-                if posicao_op not in posicoes_oponente:
+                if posicao_op in posicoes_oponente:
+                    print('A posição linha {0} e coluna {1} já foi informada anteriormente!'.format(ataque_linha,ataque_coluna))
+                else:
                     print('Seu oponente está atacando na linha {0} e coluna {1}'.format(ataque_linha_oponente,ataque_coluna_oponente))
                     posicoes_oponente.append(posicao_op)
                     tabuleiro_jogador=faz_jogada(tabuleiro_jogador,ataque_linha_oponente,ataque_coluna_oponente)
@@ -207,9 +206,7 @@ while jogando:
                     escolhas=False
                     rodando=afundados(frota_oponente,tabuleiro_oponente)
                     rodando_oponente=afundados(frota,tabuleiro_jogador)
-        else:
-            print('A posição linha {0} e coluna {1} já foi informada anteriormente!'.format(ataque_linha,ataque_coluna))
-            escolhas=False
+       
             
     if rodando == 10:
         jogando=False
