@@ -1,4 +1,5 @@
 import random
+random.seed(2)
 
 def define_posicoes(linha, coluna, orientacao, tamanho): 
     posicoes = []
@@ -136,7 +137,7 @@ for navio in frota.keys():
 def monta_tabuleiros(tabuleiro_jogador, tabuleiro_oponente):
     texto = ''
     texto += '   0  1  2  3  4  5  6  7  8  9         0  1  2  3  4  5  6  7  8  9\n'
-    texto += '___________      ___________\n'
+    texto += '_______________________________      _______________________________\n'
 
     for linha in range(len(tabuleiro_jogador)):
         jogador_info = '  '.join([str(item) for item in tabuleiro_jogador[linha]])
@@ -172,12 +173,11 @@ tabuleiro_jogador=posiciona_frota(frota)
 posicoes=[]
 posicoes_oponente=[]
 jogando=True 
+tabuleiro=monta_tabuleiros(tabuleiro_jogador,tabuleiro_oponente)
+print(tabuleiro)
 while jogando:
     escolhas=True
     while escolhas:
-        tabuleiro=monta_tabuleiros(tabuleiro_jogador,tabuleiro_oponente)
-        print(tabuleiro)
-
         ataque_linha=int(input('Qual linha deseja atacar? '))
         while ataque_linha not in range(0,10):
             print('Linha inválida!')
@@ -195,6 +195,7 @@ while jogando:
             rodando=afundados(frota_oponente,tabuleiro_oponente)
         else:
             print('A posição linha {0} e coluna {1} já foi informada anteriormente!'.format(ataque_linha,ataque_coluna))
+            escolhas = True 
         if rodando == 10:
             jogando=False
             escolhas=False
